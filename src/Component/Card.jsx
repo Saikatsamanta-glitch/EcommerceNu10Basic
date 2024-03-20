@@ -1,10 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../redux/action";
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct } from "../redux/cartSlice";
 
 export default function Card({ item }) {
   const dispatch = useDispatch();
   const { title, image, description, category } = item;
+
+  const addtoCart = (item) => {
+    dispatch(addProduct(item));
+  };
+
   return (
     <div className="w-72 h-96 rounded overflow-hidden shadow-lg p-3">
       <img className="mx-auto h-44" src={image} alt="Sunset in the mountains" />
@@ -17,7 +22,12 @@ export default function Card({ item }) {
           #{category}
         </span>
       </div>
-      <div className="me-auto cursor-pointer text-center bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mt-8" onClick={()=>{dispatch(addProduct(item))}}>
+      <div
+        className="me-auto cursor-pointer text-center bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mt-8"
+        onClick={() => {
+          addtoCart(item);
+        }}
+      >
         Add to Cart
       </div>
     </div>

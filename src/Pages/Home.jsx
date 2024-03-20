@@ -11,7 +11,7 @@ export default function Home() {
     setProduct(response.status === 200 ? response.data : []);
   };
   console.log("fetch data function");
-  useEffect(fetch_data, []);
+  useEffect(()=>{fetch_data()} , []);
   return (
     <>
       <h1 className="hidden md:block text-center text-blue-200 text-4xl mb-4">
